@@ -2,7 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
-
+import os
+import const
 app = FastAPI()
 
 # Set up CORS
@@ -26,15 +27,15 @@ def read_items():
     return [
         {
             "id": 1,
-            "name": "Item One",
-            "description": "This is item one",
+            "name": os.getenv('user1', 'dummy user1'),
+            "description": const.desc1,
             "price": 10.5,
             "tax": 1.5
         },
         {
             "id": 2,
-            "name": "Item Two",
-            "description": "This is item two",
+            "name": os.getenv('user2', 'dummy user2'),
+            "description": const.desc2,
             "price": 20.0,
             "tax": 2.0
         }
